@@ -1,6 +1,7 @@
 package com.example.q.first_project.fragments;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
@@ -38,6 +39,7 @@ public class FragmentContacts extends Fragment {
         v = inflater.inflate(R.layout.frag_contacts, container, false);
 
         recyclerView = v.findViewById(R.id.rv_contacts);
+        recyclerView.setBackgroundColor(Color.rgb(29, 29, 37));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 

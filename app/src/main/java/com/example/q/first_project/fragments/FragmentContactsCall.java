@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FragmentContactsCall extends Fragment implements MainActivity.OnBackPressedListener {
+public class FragmentContactsCall extends Fragment {
     private View v;
     private RecyclerView recyclerView;
 
@@ -42,26 +43,20 @@ public class FragmentContactsCall extends Fragment implements MainActivity.OnBac
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        String contact_name = getArguments().getString("contact_name");
-        String contact_number = getArguments().getString("contact_number");
-        String contact_number2 = getArguments().getString("contact_number2");
-        v = inflater.inflate(R.layout.contacts_call_log, container, false);
+        v = inflater.inflate(R.layout.frag_call_log, container, false);
 
-        TextView contact_call_name = v.findViewById(R.id.contact_call_name);
-        TextView contact_call_number = v.findViewById(R.id.contact_call_number);
-        TextView contact_call_number2 = v.findViewById(R.id.contact_call_number2);
+        recyclerView = v.findViewById(R.id.rv_contacts);
 
-        contact_call_name.setText(contact_name);
-        contact_call_number.setText(contact_number);
-        contact_call_number2.setText(contact_number2);
-
-        recyclerView = v.findViewById(R.id.rv_contacts_call);
+        recyclerView.setBackgroundColor(Color.rgb(29, 29, 37));
+        Bundle bundle=getArguments();
+        String contact_call_number = bundle.getString("number");
+        String contact_call_number2 = bundle.getString("number2");
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         RecyclerView.LayoutManager layoutManager = linearLayoutManager;
         recyclerView.setLayoutManager(layoutManager);
 
-        ContactsCallRvAdapter adapter = new ContactsCallRvAdapter(getContext(), getCallLogs(contact_call_number.getText().toString(),contact_call_number2.getText().toString() ));
+        ContactsCallRvAdapter adapter = new ContactsCallRvAdapter(getContext(), getCallLogs(contact_call_number, contact_call_number2 ));
 
         recyclerView.setAdapter(adapter);
         return v;
@@ -101,20 +96,4 @@ public class FragmentContactsCall extends Fragment implements MainActivity.OnBac
         return list;
     }
 
-    @Override
-    public void onBack() {
-        Log.e("Other", "onBack()");
-        MainActivity activity = (MainActivity)getActivity();
-        // 한번 뒤로가기 버튼을 눌렀다면 Listener 를 null 로 해제해줍니다.
-        activity.setOnBackPressedListener(null);
-        // MainFragment 로 교체
-        getFragmentManager().popBackStack();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.e("Other", "onAttach()");
-        ((MainActivity)context).setOnBackPressedListener(this);
-    }
 }

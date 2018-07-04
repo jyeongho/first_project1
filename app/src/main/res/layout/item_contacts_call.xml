@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/duration"
             android:layout_toEndOf="@+id/duration"
-            android:text="s"
+            android:text="sec"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
 
@@ -50,7 +50,7 @@
             android:layout_centerVertical="true"
             android:text="date"
             android:textColor="@android:color/white"
-            android:textSize="14dp" />
+            android:textSize="10dp" />
     </RelativeLayout>
 
 </LinearLayout>

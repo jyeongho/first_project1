@@ -1,20 +1,16 @@
 package com.example.q.first_project.adapters;
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.content.Intent;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.q.first_project.MainActivity;
 import com.example.q.first_project.R;
-import com.example.q.first_project.fragments.FragmentContactsCall;
+import com.example.q.first_project.SecondActivity;
+import com.example.q.first_project.ThirdActivity;
 import com.example.q.first_project.models.ModelContacts;
 
 import java.util.List;
@@ -55,18 +51,13 @@ public class ContactsRvAdapter extends RecyclerView.Adapter<ContactsRvAdapter.Vi
 
             @Override
             public void onClick(View view) {
-                Fragment fragment = new FragmentContactsCall();
-                Bundle bundle = new Bundle(3);
-                bundle.putString("contact_name", contact_name.getText().toString());
-                bundle.putString("contact_number", contact_number.getText().toString());
-                bundle.putString("contact_number2", contact_number2.getText().toString());
-                fragment.setArguments(bundle);
-                FragmentManager fragmentManager = ((MainActivity) mContext).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.linear_rv, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
+                Intent intent = new Intent(view.getContext(), ThirdActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", contact_name.getText().toString());
+                bundle.putString("number", contact_number.getText().toString());
+                bundle.putString("number2", contact_number2.getText().toString());
+                intent.putExtras(bundle);
+                view.getContext().startActivity(intent);
             }
         });
     }
@@ -83,9 +74,8 @@ public class ContactsRvAdapter extends RecyclerView.Adapter<ContactsRvAdapter.Vi
             contact_name = itemView.findViewById(R.id.contact_name);
             contact_number = itemView.findViewById(R.id.contact_number);
             contact_number2 = itemView.findViewById(R.id.contact_number2);
-
         }
 
-
     }
+
 }
