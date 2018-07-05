@@ -64,7 +64,7 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_main2);
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -73,7 +73,7 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
 
         img_preview = findViewById(R.id.image_preview);
         tabLayout = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager2);
         coordinatorLayout = findViewById(R.id.coordinator);
 
         loadImage();
@@ -223,7 +223,7 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
             public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
                 token.continuePermissionRequest();
             }
-        });
+        }).check();
     }
 
     private void openImage(String path) {

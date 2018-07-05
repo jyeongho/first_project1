@@ -22,7 +22,7 @@
         android:layout_height="360dp" />
 
     <com.example.q.first_project.Utils.NonSwipeableViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/viewpager2"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_below="@+id/image_preview"
