@@ -1,6 +1,6 @@
 package com.example.q.first_project.Interface;
 
-import java.util.logging.Filter;
+import com.zomato.photofilters.imageprocessors.Filter;
 
 public interface FiltersListFragmentListener {
     void onFilterSelected(Filter filter);

@@ -15,7 +15,7 @@ import com.example.q.first_project.R;
 import com.zomato.photofilters.utils.ThumbnailItem;
 
 import java.util.List;
-import java.util.logging.Filter;
+import com.zomato.photofilters.imageprocessors.Filter;
 
 
 public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.MyViewHolder>{
