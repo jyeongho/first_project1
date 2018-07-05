@@ -2,6 +2,8 @@ package com.example.q.first_project.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -20,13 +22,16 @@ import com.example.q.first_project.MainActivity;
 import com.example.q.first_project.R;
 import com.example.q.first_project.fragments.FragmentPicture;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.ImageViewHolder> {
 
-    private int[] images;
+    private ArrayList<String> paths;
     private Context mContext;
 
-    public RecyclerPicAdapter (int[] images, Context context) {
-        this.images = images;
+    public RecyclerPicAdapter (ArrayList<String> paths, Context context) {
+        this.paths = paths;
         mContext = context;
     }
 
@@ -42,9 +47,13 @@ public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder,final int position) {
-        final int image_id = this.images[position];
+        final String path = this.paths.get(position);
 
-        holder.Album.setImageResource(image_id);
+        File imgFile = new File(path);
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            holder.Album.setImageBitmap(myBitmap);
+        }
 
         holder.Album.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +61,7 @@ public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.
                 Intent intent = new Intent(view.getContext(), GalleryActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("image_id", position);
+                bundle.putStringArrayList("image_path",paths);
                 intent.putExtras(bundle);
                 view.getContext().startActivity(intent);
                 //holder.Album.setImageResource(image_id);
@@ -63,7 +73,7 @@ public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.
 
     @Override
     public int getItemCount() {
-        return this.images.length;
+        return this.paths.size();
     }
 
 

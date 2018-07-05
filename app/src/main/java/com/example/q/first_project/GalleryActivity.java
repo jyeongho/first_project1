@@ -1,5 +1,8 @@
 package com.example.q.first_project;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,32 +14,44 @@ import android.widget.TextView;
 
 import com.example.q.first_project.PhotoView.PhotoView;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class GalleryActivity extends AppCompatActivity {
 
+    private ArrayList<String> paths;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
         Bundle bundle = getIntent().getExtras();
         int p = bundle.getInt("image_id");
+        paths = bundle.getStringArrayList("image_path");
         ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(new SamplePagerAdapter());
+        viewPager.setAdapter(new SamplePagerAdapter(paths));
         viewPager.setCurrentItem(p);
     }
 
 
     static class SamplePagerAdapter extends PagerAdapter {
-        private static final int[] images = {R.drawable.pic1, R.drawable.pic2, R.drawable.pic3, R.drawable.pic4,
-                R.drawable.pic5, R.drawable.pic6, R.drawable.pic7, R.drawable.pic8, R.drawable.pic9
-                , R.drawable.pic10, R.drawable.pic11, R.drawable.pic12, R.drawable.pic13};
+
+        private ArrayList<String> mpaths;
+        public SamplePagerAdapter(ArrayList<String> paths) {
+            mpaths = paths;
+        }
 
         @Override
-        public int getCount() { return images.length;}
+        public int getCount() { return mpaths.size();}
 
         @Override
         public View instantiateItem(ViewGroup container, int position) {
+            File imgFile = new File(mpaths.get(position));
             PhotoView photoView = new PhotoView(container.getContext());
-            photoView.setImageResource(images[position]);
+
+            if (imgFile.exists()){
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                photoView.setImageBitmap(bitmap);
+            }
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             return photoView;
         }
@@ -53,4 +68,5 @@ public class GalleryActivity extends AppCompatActivity {
     public void backto2(View view) {
         finish();
     }
+
 }

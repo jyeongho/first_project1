@@ -1,6 +1,8 @@
 package com.example.q.first_project.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,14 +18,15 @@ import android.widget.Toast;
 import com.example.q.first_project.R;
 import com.example.q.first_project.adapters.RecyclerPicAdapter;
 
+import java.util.ArrayList;
+
 public class FragmentGallery extends Fragment {
 
     private View v;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private int[] images = {R.drawable.pic1, R.drawable.pic2, R.drawable.pic3, R.drawable.pic4,
-            R.drawable.pic5, R.drawable.pic6, R.drawable.pic7, R.drawable.pic8, R.drawable.pic9
-            , R.drawable.pic10, R.drawable.pic11, R.drawable.pic12, R.drawable.pic13};
+    private ArrayList<String> thumbsDadaList;
+    private ArrayList<String> thumbsIDList;
 
 
     public FragmentGallery() {
@@ -33,6 +36,9 @@ public class FragmentGallery extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.frag_gallery, container, false);
         recyclerView = v.findViewById(R.id.recyclerView);
+        thumbsIDList = new ArrayList<String>();
+        thumbsDadaList = new ArrayList<String>();
+        getThumbInfo(thumbsIDList, thumbsDadaList);
 
         layoutManager = new GridLayoutManager(getContext(), 3);
 
@@ -40,7 +46,7 @@ public class FragmentGallery extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerPicAdapter adapter = new RecyclerPicAdapter(images, getContext());
+        RecyclerPicAdapter adapter = new RecyclerPicAdapter(thumbsDadaList, getContext());
 
         recyclerView.setAdapter(adapter);
 
@@ -48,6 +54,33 @@ public class FragmentGallery extends Fragment {
 
 
     }
+    private void getThumbInfo(ArrayList<String> thumbsIDs, ArrayList<String> thumbsDatas) {
+        String[] proj ={MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.SIZE};
 
+        Cursor imageCursor = getContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, null, null, null);
+
+        if (imageCursor != null && imageCursor.moveToFirst()){
+            String thumbsID;
+            String thumbsImagesID;
+            String thumbsData;
+
+            int thumbsIDCol = imageCursor.getColumnIndex(MediaStore.Images.Media._ID);
+            int thumbsDataCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
+            int thumbsImagesIDCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
+            int num =0;
+            do {
+                thumbsID = imageCursor.getString(thumbsIDCol);
+                thumbsData = imageCursor.getString(thumbsDataCol);
+                thumbsImagesID = imageCursor.getString(thumbsImagesIDCol);
+                num++;
+                if (thumbsImagesID != null) {
+                    thumbsIDs.add(thumbsID);
+                    thumbsDatas.add(thumbsData);
+                }
+            }while (imageCursor.moveToNext());
+        }
+        imageCursor.close();
+        return;
+    }
 }
 
