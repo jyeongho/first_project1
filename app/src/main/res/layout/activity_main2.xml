@@ -44,10 +44,10 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager2"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_below="@+id/image_preview"
             android:layout_above="@+id/tabs"
-
+            android:gravity="center"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="PrivateResource" />
 
