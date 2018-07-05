@@ -90,7 +90,7 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
         img_preview.setImageBitmap(originalBitmap);
     }
 
-    public void setupViewPager(ViewPager upViewPager) {
+    public void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter2 adapter = new ViewPagerAdapter2(getSupportFragmentManager());
 
         filtersListFragment = new FiltersListFragment();
@@ -101,7 +101,6 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
 
         adapter.addFragment(filtersListFragment, "FILTERS");
         adapter.addFragment(editImageFragment, "EDIT");
-
         viewPager.setAdapter(adapter);
     }
 

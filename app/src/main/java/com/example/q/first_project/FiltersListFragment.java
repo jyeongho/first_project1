@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.q.first_project.Interface.FiltersListFragmentListener;
 import com.example.q.first_project.Utils.BitmapUtils;
+import com.example.q.first_project.Utils.SpacesItemDecoration;
 import com.example.q.first_project.adapters.ThumbnailAdapter;
 import com.zomato.photofilters.FilterPack;
 import com.zomato.photofilters.utils.ThumbnailItem;
@@ -62,6 +63,7 @@ public class FiltersListFragment extends Fragment implements FiltersListFragment
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         int space = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        recyclerView.addItemDecoration(new SpacesItemDecoration(space));
         recyclerView.setAdapter(adapter);
         displayThumbnail(null);
 
