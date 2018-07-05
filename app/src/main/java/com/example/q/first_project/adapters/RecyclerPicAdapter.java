@@ -45,7 +45,6 @@ public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.
         final int image_id = this.images[position];
 
         holder.Album.setImageResource(image_id);
-        holder.AlbumTitle.setText("Image: " + position);
 
         holder.Album.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +71,10 @@ public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.
     {
 
         ImageView Album;
-        TextView AlbumTitle;
-
 
         public ImageViewHolder(View itemView) {
             super(itemView);
             Album = itemView.findViewById(R.id.album);
-            AlbumTitle = itemView.findViewById(R.id.album_title);
             //itemView.setClickable(true);
             //itemView.setOnClickListener(this);
         }

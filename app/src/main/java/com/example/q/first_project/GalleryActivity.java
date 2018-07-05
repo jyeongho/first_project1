@@ -49,4 +49,8 @@ public class GalleryActivity extends AppCompatActivity {
         @Override
         public boolean isViewFromObject(View view, Object object) {return view == object; }
     }
+
+    public void backto2(View view) {
+        finish();
+    }
 }
