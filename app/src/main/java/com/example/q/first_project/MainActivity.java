@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1234;
     private boolean mPermissions;
 
-    private final int[] ICONS = {R.drawable.human4, R.drawable.galleryicon, R.drawable.instagram};
+    private final int[] ICONS = {R.drawable.human4, R.drawable.galleryicon, R.drawable.ic_filter};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new FragmentContacts(), "Contacts");
         adapter.addFragment(new FragmentGallery(), "Gallery");
-        adapter.addFragment(new FragmentLoadInsta(), "Instagram");
+        adapter.addFragment(new FragmentLoadInsta(), "Filter");
         //adapter.addFragment(new FragmentGallery(), "Gallery");
 
         viewPager.setAdapter(adapter);

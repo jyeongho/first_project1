@@ -47,7 +47,7 @@ public class FragmentContactsCall extends Fragment {
 
         recyclerView = v.findViewById(R.id.rv_contacts);
 
-        recyclerView.setBackgroundColor(Color.rgb(255, 255, 255));
+        recyclerView.setBackgroundColor(Color.rgb(29, 29, 37));
         Bundle bundle=getArguments();
         String contact_call_number = bundle.getString("number");
         String contact_call_number2 = bundle.getString("number2");
