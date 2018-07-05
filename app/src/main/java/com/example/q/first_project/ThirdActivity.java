@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.q.first_project.adapters.ViewPagerAdapter;
@@ -37,5 +38,9 @@ public class ThirdActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(fragmentContactsCall, "Contacts");
         viewPager.setAdapter(adapter);
+    }
+
+    public void backto(View view) {
+        finish();
     }
 }
