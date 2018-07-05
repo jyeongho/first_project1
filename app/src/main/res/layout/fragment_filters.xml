@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_vertical"
         android:padding="6dp"
         android:scrollbars="none"
         android:clipChildren="false"

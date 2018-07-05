@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new FragmentContacts(), "Contacts");
         adapter.addFragment(new FragmentGallery(), "Gallery");
         adapter.addFragment(new FragmentLoadInsta(), "Filter");
-        //adapter.addFragment(new FragmentGallery(), "Gallery");
 
         viewPager.setAdapter(adapter);
 
@@ -54,9 +53,6 @@ public class MainActivity extends AppCompatActivity {
             tab.setIcon(ICONS[i]);
         }
 
-        //FragmentTransaction fragmentTransaction =  getSupportFragmentManager().beginTransaction();
-
-        //fragmentTransaction.add(R.id.tablayout, new FragmentGallery());
 
 
     }
