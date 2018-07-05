@@ -9,11 +9,11 @@
     android:clickable="true"
     android:focusable="true">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="통화 시간 :"
+        android:src="@drawable/ic_call"
         android:textColor="@android:color/white"
         android:textSize="15sp"
         android:layout_marginStart="10dp"/>
@@ -50,7 +50,7 @@
             android:layout_centerVertical="true"
             android:text="date"
             android:textColor="@android:color/white"
-            android:textSize="10dp" />
+            android:textSize="11dp" />
     </RelativeLayout>
 
 </LinearLayout>

@@ -18,8 +18,19 @@
             android:background="@drawable/ic_backarrow"
             android:onClick="backto2"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="18dp"
             android:contentDescription="TODO" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Gallery"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
 
     </RelativeLayout>
 
@@ -27,7 +38,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:background="@android:color/white">
     </com.example.q.first_project.HackyViewPager>
 
 </LinearLayout>
