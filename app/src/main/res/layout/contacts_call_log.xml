@@ -11,6 +11,7 @@
     android:id="@+id/contacts_call"
     >
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="168dp">
@@ -30,9 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="6dp"
             android:text="Call Logs"
             android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:textSize="23sp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -46,17 +48,19 @@
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/contact_call_name"
+            android:layout_above="@+id/home"
             android:layout_toEndOf="@+id/imageView"
             android:text="휴대전화 : "
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
+
         <TextView
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="9dp"
             android:layout_toEndOf="@+id/imageView"
             android:text="집 : "
             android:textColor="@android:color/white"
@@ -70,7 +74,7 @@
             android:layout_toEndOf="@+id/imageView"
             android:text="name"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/contact_call_number"
@@ -86,13 +90,22 @@
             android:id="@+id/contact_call_number2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone"
+            android:layout_alignTop="@+id/home"
             android:layout_toEndOf="@+id/home"
             android:text="number2"
             android:textColor="@android:color/white"
             android:textSize="19sp" />
-    </RelativeLayout>
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="264dp"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="72dp"
+            android:layout_marginEnd="7dp"
+            android:background="@android:color/darker_gray" />
+    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/rv_contacts_call"
