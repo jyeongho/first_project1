@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.q.first_project.GalleryActivity;
 import com.example.q.first_project.MainActivity;
 import com.example.q.first_project.R;
 import com.example.q.first_project.fragments.FragmentPicture;
@@ -48,18 +50,11 @@ public class RecyclerPicAdapter extends RecyclerView.Adapter<RecyclerPicAdapter.
         holder.Album.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new FragmentPicture();
-
-                Bundle bundle = new Bundle(3);
-                bundle.putInt("image_id", image_id);
-                bundle.putString("pic_name", Integer.toString(position));
-                fragment.setArguments(bundle);
-
-                FragmentManager fragmentManager = ((MainActivity)mContext).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frag_gallery, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Intent intent = new Intent(view.getContext(), GalleryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("image_id", position);
+                intent.putExtras(bundle);
+                view.getContext().startActivity(intent);
                 //holder.Album.setImageResource(image_id);
                 //holder.pic_name.setText("Image :" + position);
             }
