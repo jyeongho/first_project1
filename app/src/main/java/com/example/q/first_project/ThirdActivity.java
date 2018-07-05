@@ -1,7 +1,9 @@
 package com.example.q.first_project;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -43,4 +45,5 @@ public class ThirdActivity extends AppCompatActivity {
     public void backto(View view) {
         finish();
     }
+
 }

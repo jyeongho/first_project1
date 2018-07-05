@@ -59,7 +59,7 @@ public class FragmentContacts extends Fragment {
         List<ModelContacts> list = new ArrayList<>();
 
         Cursor cursor = getContext().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
+                null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE);
 
         int ididx = cursor.getColumnIndex(ContactsContract.Contacts._ID);
         int nameidx = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
