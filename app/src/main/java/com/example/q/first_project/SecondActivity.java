@@ -71,7 +71,7 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Instagram Filter");
+        getSupportActionBar().setTitle("Filter");
 
         img_preview = findViewById(R.id.image_preview);
         tabLayout = findViewById(R.id.tabs);

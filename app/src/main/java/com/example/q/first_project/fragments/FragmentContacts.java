@@ -1,5 +1,7 @@
 package com.example.q.first_project.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +25,8 @@ import com.example.q.first_project.models.ModelContacts;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class FragmentContacts extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -48,7 +53,6 @@ public class FragmentContacts extends Fragment implements SwipeRefreshLayout.OnR
         RecyclerView.LayoutManager layoutManager = linearLayoutManager;
 
         recyclerView.setLayoutManager(layoutManager);
-
         ContactsRvAdapter adapter = new ContactsRvAdapter(getContext(), getContacts());
 
         recyclerView.setAdapter(adapter);

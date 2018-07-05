@@ -1,11 +1,14 @@
 package com.example.q.first_project.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +41,7 @@ public class FragmentGallery extends Fragment {
         recyclerView = v.findViewById(R.id.recyclerView);
         thumbsIDList = new ArrayList<String>();
         thumbsDadaList = new ArrayList<String>();
+
         getThumbInfo(thumbsIDList, thumbsDadaList);
 
         layoutManager = new GridLayoutManager(getContext(), 3);
