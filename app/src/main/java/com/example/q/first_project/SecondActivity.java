@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -235,24 +236,11 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
     }
 
     private void openImageFromGallery() {
-        Dexter.withActivity(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener() {
-            @Override
-            public void onPermissionsChecked(MultiplePermissionsReport report) {
-                if (report.areAllPermissionsGranted()) {
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    startActivityForResult(intent, PERMISSION_PICK_IMAGE);
-                } else {
-                    Toast.makeText(SecondActivity.this, "Permission denied!", Toast.LENGTH_SHORT).show();
-                }
-            }
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PERMISSION_PICK_IMAGE);
 
-            @Override
-            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                token.continuePermissionRequest();
-            }
-        });
     }
 
     //Ctrl O
@@ -260,6 +248,14 @@ public class SecondActivity extends AppCompatActivity implements FiltersListFrag
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == PERMISSION_PICK_IMAGE) {
+            Bitmap image_bitmap = null;
+            try {
+                image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            img_preview.setImageBitmap(image_bitmap);
+
             Bitmap bitmap = BitmapUtils.getBitmapFromGallery(this, data.getData(), 800, 800);
             originalBitmap.recycle();
             finalBitmap.recycle();
