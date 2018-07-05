@@ -23,7 +23,7 @@ import com.example.q.first_project.models.ModelContacts;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentContacts extends Fragment  {
+public class FragmentContacts extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private View v;
     private View v2;
@@ -53,8 +53,18 @@ public class FragmentContacts extends Fragment  {
 
         recyclerView.setAdapter(adapter);
 
+        swipeRefreshLayout = v.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(android.R.color.holo_green_dark),getResources().getColor(android.R.color.holo_red_dark)
+                ,getResources().getColor(android.R.color.holo_blue_dark),getResources().getColor(android.R.color.holo_orange_dark) );
 
         return v;
+    }
+    @Override
+    public void onRefresh() {
+        FragmentTransaction ft=getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     private List<ModelContacts> getContacts() {

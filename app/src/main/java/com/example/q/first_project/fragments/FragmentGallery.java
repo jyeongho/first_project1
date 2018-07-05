@@ -34,7 +34,7 @@ public class FragmentGallery extends Fragment {
         v = inflater.inflate(R.layout.frag_gallery, container, false);
         recyclerView = v.findViewById(R.id.recyclerView);
 
-        layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutManager = new GridLayoutManager(getContext(), 3);
 
         recyclerView.setHasFixedSize(true);
 
